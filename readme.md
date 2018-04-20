@@ -12,7 +12,7 @@ For notifications uses [BurntToast](https://github.com/Windos/BurntToast) script
 
 ## Installation instructions
 
-...placed in scripts [folder](https://github.com/ripev/JenkinsBuildNotification/blob/master/getjobs/readme.md)
+...placed in scripts [folder](https://github.com/ripev/JenkinsBuildNotification/tree/master/getjobs)
 
 ## Requirements
 

@@ -24,3 +24,4 @@ bash for windows should be installed or you should use (Git for Windows)`s bash.
 
 - [ ] add descriptions to all commands in `getjobs.ps1`
 - [ ] add started by notification
+- [ ] add check for windows bash or Git for Windows

@@ -18,7 +18,7 @@ $NoActiveJobsMessage = "NoActiveJobs"
 
 $sh = "wget -q --no-check-certificate --auth-no-challenge --user $($user) --password $($pass) '$($jenkinsUri)/job/$($jenkisnFolderOrView)/view/All/api/json?tree=jobs[name,color]' -O $($jobsJsonOutput) > /dev/null"
 if ((Test-Path $JobsLogFile -ErrorAction SilentlyContinue) -eq $false) {
-	Write-Output "$($dateSuffix):`n$($NoActiveJobsMessage)" | Out-File $JobsLogFile -Append -Encoding utf8
+	Write-Output "$($dateSuffix)`n$($NoActiveJobsMessage)" | Out-File $JobsLogFile -Append -Encoding utf8
 }
 $LastRunningJob = Get-Content -Path $JobsLogFile | Select-Object -Last 1
 bash -c $sh
@@ -34,13 +34,13 @@ if ($jobRunning.count -gt 0 -and $jobRunning -notmatch $LastRunningJob) {
 	$shBuildStarter = "wget -q --no-check-certificate --auth-no-challenge --user $($user) --password $($pass) '$($jenkinsUri)/job/$($jenkisnFolderOrView)/job/$($jobRunning)/$($lastBuildNumber)/api/json?pretty=true' -O $($buildNumberJsonOutput) > /dev/null"
 	bash -c $shBuildStarter
 	$buildStarterJson = Get-Content -Encoding UTF8 -Path $buildNumberJsonOutput | ConvertFrom-Json
-	$buildStarterName = (($buildStarterJson.actions | where {$_._class -eq "hudson.model.CauseAction"}).causes).shortDescription | Select-Object -First 1
+	$buildStarterName = (($buildStarterJson.actions | Where-Object {$_._class -eq "hudson.model.CauseAction"}).causes).shortDescription | Select-Object -First 1
 
 	New-BurntToastNotification -Text $jobRunning,$buildStarterName -Button $BlogButton -AppLogo $logo
-	Write-Output "`n$($dateSuffix):`n$($jobRunning)" | Out-File $JobsLogFile -Append -Encoding utf8
+	Write-Output "`n$($dateSuffix)`n$($jobRunning)" | Out-File $JobsLogFile -Append -Encoding utf8
 } else {
 	if ($jobRunning.count -eq 0 -and $LastRunningJob -ne $NoActiveJobsMessage) {
-		Write-Output "`n$($dateSuffix):`n$($NoActiveJobsMessage)" | Out-File $JobsLogFile -Append -Encoding utf8
+		Write-Output "`n$($dateSuffix)`n$($NoActiveJobsMessage)" | Out-File $JobsLogFile -Append -Encoding utf8
 	}
 }
 if ((Test-Path $jobsJsonOutput -ErrorAction SilentlyContinue) -eq $true) {Remove-Item $jobsJsonOutput -Force}

@@ -1,5 +1,7 @@
 ﻿# Jenkins build notifications
 
+![Main example](/media/readme1.png)
+
 ## About
 
 This Powershell + bash scripts works like CatLight ((c) 2018 Ramplio Inc) software.

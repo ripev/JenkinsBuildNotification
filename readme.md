@@ -13,3 +13,7 @@ For notifications uses [BurntToast](https://github.com/Windos/BurntToast) script
 As described above - you need to install [BurntToast](https://github.com/Windos/BurntToast).
 
 bash for windows should be installed or you should use (Git for Windows)`s bash.exe.
+
+## To Do
+
+- [ ] add started by notification

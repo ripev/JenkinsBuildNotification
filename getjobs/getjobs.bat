@@ -1,0 +1,1 @@
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command "Invoke-Expression ScriptsFolderLocation\getjobs.ps1"

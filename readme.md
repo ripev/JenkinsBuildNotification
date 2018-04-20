@@ -10,6 +10,10 @@ Find started Jenkins jobs from API url by schedule.
 
 For notifications uses [BurntToast](https://github.com/Windos/BurntToast) scripts written by [Windos](https://github.com/Windos).
 
+## Installation instructions
+
+...placed in scripts [folder](https://github.com/ripev/JenkinsBuildNotification/blob/master/getjobs/readme.md)
+
 ## Requirements
 
 As described above - you need to install [BurntToast](https://github.com/Windos/BurntToast).
@@ -18,4 +22,5 @@ bash for windows should be installed or you should use (Git for Windows)`s bash.
 
 ## To Do
 
+- [ ] add descriptions to all commands in `getjobs.ps1`
 - [ ] add started by notification

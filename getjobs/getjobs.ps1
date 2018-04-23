@@ -5,6 +5,8 @@ $jenkinsUri = "https://###############"                   # put here your Jenkin
 $jenkisnFolderOrView = "######"                           # put here your folder in Jenkins
 $ScriptsFolderLocation = "$($env:USERPROFILE)\_bin"       # put here scripts folder
 
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8  # for correct output cyrillic messages
+
 $currentLocation = Get-Location
 Set-Location -Path $ScriptsFolderLocation
 

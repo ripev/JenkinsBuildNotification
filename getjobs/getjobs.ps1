@@ -16,7 +16,7 @@ $dateSuffix = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 
 $NoActiveJobsMessage = "NoActiveJobs"
 
-$sh = "curl -g -s -u $($user):$($pass) -k '$($jenkinsUri)/job/$($jenkisnFolderOrView)/view/All/api/json?tree=jobs[color]'"
+$sh = "curl -g -s -u $($user):$($pass) -k '$($jenkinsUri)/job/$($jenkisnFolderOrView)/view/All/api/json?tree=jobs[name,color]'"
 if ((Test-Path $JobsLogFile -ErrorAction SilentlyContinue) -eq $false) {
 	Write-Output "$($dateSuffix)`n$($NoActiveJobsMessage)" | Out-File $JobsLogFile -Append -Encoding utf8
 }

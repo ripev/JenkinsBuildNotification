@@ -25,13 +25,13 @@ $output = bash -c $sh
 $jobsJson = $output | ConvertFrom-Json
 $jobRunning = ($jobsJson.jobs | Where-Object {$_.color -match "_anime"}).name
 if ($jobRunning.count -gt 0 -and $jobRunning -notmatch $LastRunningJob) {
-	$shBuildN = "curl -s -u $($user):$($pass) -k $($jenkinsUri)/job/$($jenkisnFolderOrView)/job/$($jobRunning)/api/json?pretty"
+	$shBuildN = "curl -g -s -u $($user):$($pass) -k '$($jenkinsUri)/job/$($jenkisnFolderOrView)/job/$($jobRunning)/api/json?tree=builds[number]{0,5}'"
 	$output = bash -c $shBuildN
 	$buildNumberJson = $output | ConvertFrom-Json
 	$lastBuildNumber = ($buildNumberJson.builds | Sort-Object number -Descending | Select-Object -First 1).number
 	$BlogButton = New-BTButton -Content 'View Log' -Arguments "$($jenkinsUri)/job/$($jenkisnFolderOrView)/job/$($jobRunning)/$($lastBuildNumber)/console"
 
-	$shBuildStarter = "curl -s -u $($user):$($pass) -k $($jenkinsUri)/job/$($jenkisnFolderOrView)/job/$($jobRunning)/$($lastBuildNumber)/api/json?pretty=true"
+	$shBuildStarter = "curl -g -s -u $($user):$($pass) -k '$($jenkinsUri)/job/$($jenkisnFolderOrView)/job/$($jobRunning)/$($lastBuildNumber)/api/json?tree=actions[causes[shortDescription]]'"
 	$output = bash -c $shBuildStarter
 	$buildStarterJson = $output | ConvertFrom-Json
 	$buildStarterName = (($buildStarterJson.actions | Where-Object {$_._class -eq "hudson.model.CauseAction"}).causes).shortDescription | Select-Object -First 1

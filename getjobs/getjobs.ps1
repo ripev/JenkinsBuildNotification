@@ -7,6 +7,10 @@ $ScriptsFolderLocation = "$($env:USERPROFILE)\_bin"       # put here scripts fol
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8  # for correct output cyrillic messages
 
+$lockscreen = $null
+$lockscreen = (Get-Process | Where-Object {$_.Name -match "logonui"})
+if ($null -ne $lockscreen) {Exit 0}
+
 $currentLocation = Get-Location
 Set-Location -Path $ScriptsFolderLocation
 
